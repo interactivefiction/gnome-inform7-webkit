@@ -1,0 +1,14 @@
+#!/bin/bash
+cat << EOF > ./src/webkit/webkit-1.0.pc
+prefix="$PWD/src/webkit"
+exec_prefix=\${prefix}
+libdir=\${exec_prefix}/lib
+includedir=\${prefix}/include
+
+Name: WebKit
+Description: Web content engine for GTK+
+Version: 1.10.2
+Requires: glib-2.0 gtk+-2.0 libsoup-2.4 javascriptcoregtk-1.0
+Libs: -L\${libdir} -lwebkitgtk-1.0
+Cflags: -I\${includedir}/webkitgtk-1.0
+EOF

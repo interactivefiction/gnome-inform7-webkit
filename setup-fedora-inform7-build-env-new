@@ -1,0 +1,17 @@
+#!/bin/bash
+echo 'BEGIN DEP WORK AROUND ########################'
+echo $(pwd)
+rm -rf ./src/webkit/webkit-1.0.pc
+rm -rf ./src/webkit/javascriptcoregtk-1.0.pc
+./src/webkit/genwebkitpc.sh
+./src/webkit/genjavascriptpc.sh
+echo 'GENERATED WEBKIT PKGCFG ######################'
+cat $(pwd)/src/webkit/webkit-1.0.pc
+echo 'GENERATED JAVASCRIPTCORE PKGCFG ##############'
+cat $(pwd)/src/webkit/javascriptcoregtk-1.0.pc
+echo 'SETTING TMP PKGCFG PATH ######################'
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$(pwd)/src/webkit
+echo 'SETTING TMP LDLIB PATH #######################'
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)/src/webkit
+echo 'END DEP WORK AROUND ##########################'
+
